@@ -2,27 +2,21 @@ language: node_js
 node_js:
   - "10"
 
-stages:
-  - install
-  - test
-  - build
-
-install:
-  - npm install
-
-test:
-  - npm run test
-  - npm run lint
-
-build:
-  - npm run build
-
 jobs:
   include:
     - stage: install
       name: "Install dependencies"
+      script: npm install
     - stage: test
       name: "Run unit tests and linter"
+      script: npm run test
+      script: npm run lint
     - stage: build
       name: "Make build"
+      script: npm run build
+
+stages:
+  - install
+  - test
+  - build
 
