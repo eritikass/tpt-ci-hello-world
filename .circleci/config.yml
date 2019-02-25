@@ -2,7 +2,7 @@ version: 2
 jobs:
   one:
     docker:
-      - image: node
+      - image: circleci/node
     steps:
       - checkout
       - run: echo "A first hello"
@@ -10,7 +10,7 @@ jobs:
       - run: node -v
   two:
     docker:
-      - image: node
+      - image: circleci/node
     steps:
       - checkout
       - run: echo "A more familiar hi"
