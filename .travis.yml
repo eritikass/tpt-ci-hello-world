@@ -1,13 +1,12 @@
 language: node_js
 node_js:
-  - "iojs"
-  - "8"
   - "10"
 
 stages:
   - install
   - test
   - lint
+  - build
 
 install:
   - npm install
@@ -18,6 +17,9 @@ test:
 lint:
   - npm run lint
 
+build:
+  - npm run build
+
 jobs:
   include:
     - stage: install
@@ -26,3 +28,6 @@ jobs:
       name: "Run unit tests"
     - stage: lint
       name: "Run linter"
+    - stage: build
+      name: "Make build"
+
