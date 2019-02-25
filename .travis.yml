@@ -16,7 +16,7 @@ jobs:
       name: "Make build"
       script: npm run build
     - stage: deploy
-      script: cd dist
+      script: ls -lah
       name: "Deploy to GitHub Pages"
       deploy:
         provider: pages
