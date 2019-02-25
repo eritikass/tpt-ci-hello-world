@@ -8,15 +8,28 @@ jobs:
       name: "Install dependencies"
       script: npm install
     - stage: test
-      name: "Run unit tests and linter"
+      name: "Run unit tests"
       script: npm run test
-      script: npm run lint
+    - script: npm run lint
+      name: "Run linter"
     - stage: build
       name: "Make build"
       script: npm run build
+    - stage: deploy
+      script: skip
+      name: "Deploy to GitHub Pages"
+      deploy:
+        provider: pages
+        skip-cleanup: true
+        github-token: $GITHUB_TOKEN
+        keep-history: true
+        on:
+          branch: master
+
 
 stages:
   - install
   - test
   - build
+  - deploy
 
