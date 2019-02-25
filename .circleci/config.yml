@@ -1,0 +1,35 @@
+version: 2
+jobs:
+  one:
+    docker:
+      - image: circleci/node
+    steps:
+      - checkout
+      - run: echo "A first hello"
+#      - run: sleep 25
+      - run: node -v
+  two:
+    docker:
+      - image: circleci/node
+    steps:
+      - checkout
+      - run: echo "A more familiar hi"
+      - run: ls -lah
+      - run: touch qwer.txt
+      - run: ls -lah
+#      - run: sleep 15
+  err:
+    docker:
+      - image: alpine
+    steps:
+      - run: ls -lah
+      - checkout
+      - run: ls -lah
+      - run: exit 2
+workflows:
+  version: 2
+  one_and_two:
+    jobs:
+      - one
+      - two
+      - err
