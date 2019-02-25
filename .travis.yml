@@ -5,7 +5,6 @@ node_js:
 stages:
   - install
   - test
-  - lint
   - build
 
 install:
@@ -13,8 +12,6 @@ install:
 
 test:
   - npm run test
-
-lint:
   - npm run lint
 
 build:
@@ -25,9 +22,7 @@ jobs:
     - stage: install
       name: "Install dependencies"
     - stage: test
-      name: "Run unit tests"
-    - stage: lint
-      name: "Run linter"
+      name: "Run unit tests and linter"
     - stage: build
       name: "Make build"
 
