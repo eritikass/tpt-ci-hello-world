@@ -1,0 +1,28 @@
+language: node_js
+node_js:
+  - "iojs"
+  - "8"
+  - "10"
+
+stages:
+  - install
+  - test
+  - lint
+
+install:
+  - npm install
+
+test:
+  - npm run test
+
+lint:
+  - npm run lint
+
+jobs:
+  include:
+    - stage: install
+      name: "Install dependencies"
+    - stage: test
+      name: "Run unit tests"
+    - stage: lint
+      name: "Run linter"
