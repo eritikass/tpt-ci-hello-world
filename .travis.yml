@@ -1,0 +1,36 @@
+language: node_js
+node_js:
+  - "10"
+
+jobs:
+  include:
+    - stage: install
+      name: "Install dependencies"
+      script: npm install
+    - stage: test
+      name: "Run unit tests"
+      script: npm run test
+    - script: npm run lint
+      name: "Run linter"
+    - stage: build
+      name: "Make build"
+      script: npm run build
+    - stage: deploy
+      script: npm run build
+      name: "Deploy to GitHub Pages"
+      deploy:
+        local-dir: dist
+        provider: pages
+        skip-cleanup: true
+        github-token: $GITHUB_TOKEN
+        keep-history: true
+        on:
+          branch: master
+
+
+stages:
+  - install
+  - test
+  - build
+  - deploy
+
