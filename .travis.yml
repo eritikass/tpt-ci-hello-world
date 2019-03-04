@@ -16,9 +16,10 @@ jobs:
       name: "Make build"
       script: npm run build
     - stage: deploy
-      script: bash ./deploy.sh
+      script: npm run build
       name: "Deploy to GitHub Pages"
       deploy:
+        local-dir: dist
         provider: pages
         skip-cleanup: true
         github-token: $GITHUB_TOKEN
