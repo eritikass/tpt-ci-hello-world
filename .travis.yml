@@ -15,6 +15,9 @@ jobs:
     - stage: build
       name: "Make build"
       script: npm run build
+    - stage: before_deploy
+      name: "Give permissions"
+      script: chmod +x deploy.sh
     - stage: deploy
       script: ./deploy.sh
       name: "Deploy to GitHub Pages"
